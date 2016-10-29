@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheNews?</title>
+</head>
+<body>
+{{^name}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Enter username" name="username">
+    <input type="password" placeholder="Enter password" name="password">
+    <button type="submit">Login</button>
+</form>
+{{/name}}
+{{#name}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+{{/name}}
+<table>
+    <th>Submitted by</th>
+    <th>Headline</th>
+    <th>Link</th>
+    <th>Real</th>
+    <th>Fake</th>
+{{#stories}}
+    <tr>
+        <td>
+            {{user.name}}
+        </td>
+        <td>
+            {{headline}}
+        </td>
+        <td>
+            {{link}}
+        </td>
+        <td>
+            {{real}}
+        </td>
+        <td>
+            {{fake}}
+        </td>
+{{/stories}}
+    </tr>
+</table>
+</body>
+</html>
