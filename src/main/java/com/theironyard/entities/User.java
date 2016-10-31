@@ -19,7 +19,7 @@ public class User {
     private String password;
 
     @Column
-    private String image;
+    public String image;
 
     public User() {
     }

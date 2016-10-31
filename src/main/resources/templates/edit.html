@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Story</title>
+</head>
+<body>
+{{#story}}
+{{headline}}
+<br>
+<br>
+{{link}}
+<br>
+<br>
+{{real}}
+<br>
+<br>
+{{fake}}
+<br>
+<br>
+<form action="/edit" method="post">
+    <input type="hidden" value="{{id}}" name="id">
+    <input type="text" placeholder="Enter new headline" name="headline">
+    <input type="text" placeholder="Enter new URL" name="link">
+<button type="submit">Submit</button>
+</form>
+{{/story}}
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+{{#name}}
+<body>
+<form action="/upload" method="post">
+    <input type="text" placeholder="Enter image url" name="image">
+    <button type="submit">Submit</button>
+</form>
+Welcome {{name}}!
+<br>
+<br>
+<table align="center" border="1px">
+    <th colspan="5">
+        {{name}}'s Stories
+    </th>
+    <tr>
+        <td>
+            Headline
+        </td>
+        <td>
+            Real
+        </td>
+        <td>
+            Fake
+        </td>
+        <td>
+            Delete
+        </td>
+        <td>
+            Edit
+        </td>
+    </tr>
+    {{#userlist}}
+    <tr>
+        <td>
+            <a href="{{link}}">{{headline}}</a>
+        </td>
+        <td>
+            {{real}}
+        </td>
+        <td>
+            {{fake}}
+        </td>
+        <td>
+            <form action="/delete" method="post">
+                <input type="hidden" value="{{id}}" name="id">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+        <td>
+            <a href="/edit?id={{id}}">Edit</a>
+        </td>
+        {{/userlist}}
+    </tr>
+</table>
+{{/name}}
+
+</body>
+</html>

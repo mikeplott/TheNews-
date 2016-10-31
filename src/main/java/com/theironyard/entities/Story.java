@@ -27,6 +27,9 @@ public class Story {
     @ManyToOne
     private User user;
 
+    @Transient
+    public boolean isMine;
+
     public Story() {
     }
 
@@ -91,5 +94,13 @@ public class Story {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isMine() {
+        return isMine;
+    }
+
+    public void setMine(boolean mine) {
+        isMine = mine;
     }
 }

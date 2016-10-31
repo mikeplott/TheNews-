@@ -3,42 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>TheNews?</title>
+    <style>
+        tr {
+            height: 80px;
+        }
+    </style>
 </head>
 <body>
-{{^name}}
+<h2 align="center">Inspired by the Onion and the Subreddit Not the Onion</h2>
+{{^username}}
 <form action="/login" method="post">
     <input type="text" placeholder="Enter username" name="username">
     <input type="password" placeholder="Enter password" name="password">
     <button type="submit">Login</button>
 </form>
-{{/name}}
-{{#name}}
+{{/username}}
+{{#username}}
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
-{{/name}}
-<table>
+<br>
+<a href="/profile?id={{id}}">Profile</a>
+<br>
+<br>
+<a href="/story">Submit Story</a>
+{{/username}}
+<br>
+{{#showNext}}
+<a href="/?page={{nextPage}}">Next</a>
+{{/showNext}}
+
+{{#showPrev}}
+<a href="/?page={{prevPage}}">Previous</a>
+{{/showPrev}}
+<table align="center" border="1px" width="1200px">
     <th>Submitted by</th>
     <th>Headline</th>
-    <th>Link</th>
     <th>Real</th>
     <th>Fake</th>
+    <th>Delete</th>
 {{#stories}}
     <tr>
         <td>
-            {{user.name}}
+            {{#user}}{{username}}{{/user}}
         </td>
         <td>
-            {{headline}}
+            <a href="{{link}}">{{headline}}</a>
+        </td>
+        <td width="100px" align="center">
+            <form action="/real" method="post">
+                {{real}}
+                <input type="hidden" value="{{id}}" name="id">
+                <button type="submit">Real</button>
+            </form>
+        </td>
+        <td width="100px" align="center">
+            <form action="/fake" method="post">
+                {{fake}}
+                <input type="hidden" value="{{id}}" name="id">
+                <button type="submit">Fake</button>
+            </form>
         </td>
         <td>
-            {{link}}
+            {{#isMine}}
+            <form action="/delete" method="post">
+                <input type="hidden" value="{{id}}" name="id">
+                <button type="submit">Delete</button>
+            </form>
         </td>
         <td>
-            {{real}}
-        </td>
-        <td>
-            {{fake}}
+            <a href="/edit?id={{id}}">Edit</a>
+            {{/isMine}}
         </td>
 {{/stories}}
     </tr>
